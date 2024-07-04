@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 syntax = "proto3";
-//ああああ
+import "buf/validate/validate.proto";
 option java_multiple_files = true;
 option java_package = "io.grpc.examples.helloworld";
 option java_outer_classname = "HelloWorldProto";
@@ -27,7 +27,7 @@ service Greeter {
 
 // The request message containing the user's name.
 message HelloRequest {
-  string name = 1;
+  string name = 1[(buf.validate.field).string.min_len = 5];
 }
 
 // The response message containing the greetings

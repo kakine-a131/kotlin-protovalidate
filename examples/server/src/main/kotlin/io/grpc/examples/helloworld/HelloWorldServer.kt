@@ -47,10 +47,14 @@ class HelloWorldServer(private val port: Int) {
     }
 
     internal class HelloWorldService : GreeterGrpcKt.GreeterCoroutineImplBase() {
-        override suspend fun sayHello(request: HelloRequest) =
-            helloReply {
+        override suspend fun sayHello(request: HelloRequest) = helloReply {
+            // バリデーション
+            if (request.name.length < 5) {
+                message = "Name must be at least 5 characters long"
+            }else{
                 message = "Hello ${request.name}"
             }
+        }
     }
 }
 

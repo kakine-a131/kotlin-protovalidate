@@ -9,3 +9,7 @@ plugins {
 java {
     sourceSets.getByName("main").resources.srcDir("src/main/proto")
 }
+
+dependencies {
+    implementation ("build.buf:protovalidate:0.2.1")
+}
